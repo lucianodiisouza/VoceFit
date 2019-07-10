@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <meta name="description" content="Get started with Bootstrap, the world’s most popular framework for building responsive, mobile-first sites, with BootstrapCDN and a template starter page.">
     <meta name="author" content="Luciano dii Souza - Desenvolvedor Web FullStack & Mobile">
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
     <!-- meu css -->
     <link rel="stylesheet" href="assets/css/dashboard.css" type="text/css" />
     <!-- CSS do Bootstrap -->
