@@ -1,0 +1,43 @@
+.linhaCustom {	
+	background: rgba(0, 0, 0, 0.05);
+	margin: 15px;
+}
+.colunaCustom {	
+	background: rgba(0, 0, 0, 0.05);
+	margin: 15px;
+	padding: 25px;
+}
+.bloco_link{
+	color: #000;
+}
+.bloco_link:hover{
+	color: #fff;
+}
+.img_perfil{
+	width: 128px;
+	height: 128px;
+	border-radius: 50px;
+}
+.header_coluna{
+	display: flex;
+	justify-content: space-between;
+}
+.header_flexInicio{
+	display: flex;
+	justify-content: flex-start;
+}
+.header_flexFinal{
+	display: flex;
+	justify-content: flex-end;
+}
+.block_partida{
+	border-radius: 10px;
+	background-color: #dedede;
+	margin: 20px;
+	padding: 10px;
+	align-content: center;
+}
+.flex-div{
+	display: flex;
+    justify-content: flex-end !important;
+}
