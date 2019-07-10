@@ -1,5 +1,4 @@
 # VoceFit
  Projeto Você Fit - Dev: Luciano dii Souza
 
-O projeto será composto de um Dashboard Administrativo Web
-Além de versões nativas no Android e no iOS.
+> This project was created using Bootstrap for the adminstrative dashboard and React for the mobile development
