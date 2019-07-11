@@ -58,49 +58,88 @@
   </nav>
   <!-- fim da barra de navegação -->
   <!-- que comecem os jogos -->
-  <div class="container-fluid" style="width: 90% !important;">
-      <br>
-      <br>
-      <br>
+  <br>
+  <br>
+  <br>
+  <div class="container-fluid">
     <div class="row">
-      <div class="col colunaCustom">
-        <div class="header_coluna">
-          <h4>Vídeos</h4>
-          <a href="novo.php" class="btn btn-success"><i class="fas fa-plus"></i></a>
-        </div>
-          <hr>
-      <div class="table-responsive">
-        <table class="table table-hover table-sm">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th scope="col">Título</th>
-              <th scope="col">Categoria</th>
-              <th scope="col">Professor</th>
-              <th scope="col"><center>Ações</center></th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php 
-              $sql = "SELECT * FROM videos ORDER BY id DESC;";
-              $qry = mysqli_query($conecta, $sql);
-              while($video = mysqli_fetch_array($qry)){
-            ?>
-            <!-- é mágica? acho que não rs -->
-                <tr>
-                  <td><center><?php echo $video['id']; ?></center></td>
-                  <td><?php echo $video['titulo'] ?></td>
-                  <td><?php echo $video['categoria'] ?></td>
-                  <td><?php echo $video['professor'] ?></td>
-                  <td>
-                    <center><a href="ver.php?id=<?php echo $video['id'] ?>"><i class="far fa-eye"></i></a></center>
-                  </td>
-            <!-- é mágica? acho que não rs -->
-            <?php
+      <div class="col abc">
+          <form method="post">
+          <div class="row">
+              <div class="col">
+                <div class="text-right">
+                      <input type="submit" class="btn btn-success" value="Salvar">
+                      <a href="index.php" class="btn btn-danger">Voltar</a>
+                      <input type="hidden" name="envia" value="envia">
+                </div>
+                <br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                Título:
+                <input type="text" name="titulo" class="form-control">
+              </div>
+              <div class="col-md-4">
+                Categoria:
+                <select name="categoria" class="form-control">
+                  <option value="Pernas">Pernas</option>
+                  <option value="Braço">Braço</option>
+                  <option value="Costas">Costas</option>
+                  <option value="Pernas">Pernas</option>
+                  <option value="Glúteo">Glúteo</option>
+                  <option value="Abdomem">Abdomem</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                Link:
+                <input type="text" name="linkVideo" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                Professor:
+                <input type="text" name="professor" class="form-control">
+              </div>
+              <div class="col">
+                Data:
+                <input type="date" name="data" class="form-control">
+              </div>
+              <div class="col">
+                Disponível?
+                <select name="disponível" class="form-control" >
+                  <option value="" disabled hidden selected>Selecione uma opção ...</option>
+                  <option value="Sim">Sim</option>
+                  <option value="Não">Não</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                Descrição:
+                <textarea name="desc" class="form-control" style="min-height: 150px;"></textarea>
+              </div>
+            </div>
+            <br>
+          </form>
+          <?php 
+            if(isset($_POST['envia'])){
+              $titulo = $_POST['titulo'];
+              $categoria = $_POST['categoria'];
+              $link = $_POST['linkVideo'];
+              $professor = $_POST['professor'];
+              $desc = $_POST['desc'];
+              //É hora do show porra!
+
+              $sql = "INSERT INTO videos (titulo, categoria, link, professor, descricao) VALUES ('$titulo', '$categoria', '$link', '$professor', '$desc')";
+              
+              if($conecta->query($sql) === true){
+                echo "Vídeo adicionado com sucesso!";
+              }else{
+                echo "Erro: " .$sql. "<br>" .$conecta->error;
               }
-            ?>
-          </tbody>
-        </table>
+            }
+          ?>
       </div>
     </div>
   </div>
