@@ -96,7 +96,7 @@
               </div>
               <div class="col-md-3">
                 Nascimento:
-                <input type="date" class="form-control" required>
+                <input type="date"name="nascimento" class="form-control" required>
               </div>
               <div class="col-md-3">
                 Cargo:
@@ -145,6 +145,7 @@
               $senha = md5($_POST['senha']);
               $email = $_POST['email'];
               $nome = $_POST['nome'];
+              $nascimento = $_POST['nascimento'];
               $role = $_POST['cargo'];
               $telefone = $_POST['telefone'];
               $bio = $_POST['bio'];
@@ -154,7 +155,7 @@
               $whatsapp = 'https://wa.me/55'.$whatsapp_postvar;
               //É hora do show porra!
 
-              $sql = "INSERT INTO usuarios_admin (usuario, senha, email, nome, role, telefone, bio, facebook, instagram, whatsapp) VALUES ('$usuario', '$senha', '$email', '$nome', '$role', '$telefone', '$bio', '$facebook', '$instagram', '$whatsapp')";
+              $sql = "INSERT INTO usuarios_admin (usuario, senha, email, nome, nascimento, role, telefone, bio, facebook, instagram, whatsapp) VALUES ('$usuario', '$senha', '$email', '$nome', '$nascimento', '$role', '$telefone', '$bio', '$facebook', '$instagram', '$whatsapp')";
               
               if($conecta->query($sql) === true){
                 echo "Usuário adicionado com sucesso!";

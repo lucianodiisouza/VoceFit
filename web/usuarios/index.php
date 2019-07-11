@@ -97,7 +97,7 @@
                     <center>
                       <a class="customLink" target="_blank" href="<?php echo $usuario['facebook'] ?>"><i class="fab fa-facebook"></i></a>
                       <a class="customLink" target="_blank" target="_blank" href="<?php echo $usuario['instagram'] ?>"><i class="fab fa-instagram"></i></a>
-                      <a class="customLink" target="_blank" href="<?php echo $usuario['whatsapp'] ?>"><i class="fab fa-whatsapp"></i></a>                
+                      <a class="customLink" target="_blank" href="https://wa.me/55<?php echo $usuario['whatsapp'] ?>"><i class="fab fa-whatsapp"></i></a>                
                     </center>
                   </td>
                   <td><center><a href="ver.php?id=<?php echo $usuario['id'] ?>"><i class="far fa-eye"></i></a></center></td>

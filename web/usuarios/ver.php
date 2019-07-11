@@ -65,6 +65,12 @@
     <div class="row">
       <div class="col abc">
           <form method="post">
+              <?php
+                $id = $_GET['id'];
+                $sql = "SELECT * FROM usuarios_admin WHERE id = $id";
+                $qry = mysqli_query($conecta, $sql);
+                $usuario = mysqli_fetch_assoc($qry);               
+              ?>
           <div class="row">
               <div class="col">
                 <div class="text-right">
@@ -78,62 +84,78 @@
             <div class="row">
               <div class="col-md-4">
                 Usuário:
-                <input type="text" name="usuario" class="form-control" required>
+                <input type="text" name="usuario" value="<?php echo $usuario['usuario'] ?>" class="form-control" required>
               </div>
               <div class="col-md-4">
                 Senha:
-                <input type="password" name="senha" class="form-control" required>
+                <input type="password" name="senha" value="<?php echo $usuario['senha'] ?>" class="form-control" readonly>
               </div>
               <div class="col-md-4">
                 E-mail:
-                <input type="mail" name="email" class="form-control" required>
+                <input type="mail" name="email" value="<?php echo $usuario['email'] ?>" class="form-control" required>
               </div>
             </div>
             <div class="row">
               <div class="col-md-3">
                 Nome:
-                <input type="text" name="nome" class="form-control" required>
+                <input type="text" name="nome" value="<?php echo $usuario['nome'] ?>" class="form-control" required>
               </div>
               <div class="col-md-3">
                 Nascimento:
-                <input type="date" class="form-control" required>
+                <input type="date" name="nascimento" value="<?php echo $usuario['nascimento'] ?>" class="form-control" required>
               </div>
               <div class="col-md-3">
                 Cargo:
                 <select name="cargo" class="form-control" required>
-                  <option value="" selected disabled hidden>Selecione um cargo...</option>
-                  <?php 
-                    $sql = "SELECT * FROM role";
-                    $qry = mysqli_query($conecta, $sql);
-                    while($cargos = mysqli_fetch_assoc($qry)){
-                      echo "<option value='".$cargos['id']."'>".$cargos["role"]."</option>";
-                    }
-                  ?>
+                <?php
+                    if(!empty($usuario['role'])){ 
+                        $sql = "SELECT * FROM role WHERE id = ".$usuario['role'].";";
+                        $qry = mysqli_query($conecta, $sql);
+                        $role = mysqli_fetch_assoc($qry);
+                ?>
+                <option value="<?php $role['id'] ?>" selected disabled hidden><?php echo $role['role'] ?></option>
+                <?php 
+                        $sql = "SELECT * FROM role";
+                        $qry = mysqli_query($conecta, $sql);
+                        while($cargos = mysqli_fetch_assoc($qry)){
+                            echo "<option value='".$cargos['id']."'>".$cargos["role"]."</option>";
+                        }
+                    }else{
+                ?>
+                <option value="" selected disabled hidden>Selecione um cargo...</option>
+                <?php 
+                  $sql = "SELECT * FROM role";
+                  $qry = mysqli_query($conecta, $sql);
+                  while($cargos = mysqli_fetch_assoc($qry)){
+                    echo "<option value='".$cargos['id']."'>".$cargos["role"]."</option>";
+                  }
+                }
+                ?>
                 </select>
               </div>
               <div class="col-md-3">
                 Telefone:
-                <input type="tel" name="telefone" class="form-control">
+                <input type="tel" name="telefone" value="<?php echo $usuario['telefone'] ?>" class="form-control">
               </div>
             </div>
             <div class="row">
               <div class="col-md-4">
                 Facebook:
-                <input type="text" name="facebook" placeholder="ex.: https://www.facebook.com/seuperfil" class="form-control">
+                <input type="text" name="facebook" value="<?php echo $usuario['facebook'] ?>" placeholder="ex.: https://www.facebook.com/seuperfil" class="form-control">
               </div>
               <div class="col-md-4">
                 Instagram:
-                  <input type="text" name="instagram"  placeholder="ex.: https://www.instagram.com/seuperfil/" class="form-control">
+                  <input type="text" name="instagram" value="<?php echo $usuario['instagram'] ?>"  placeholder="ex.: https://www.instagram.com/seuperfil/" class="form-control">
               </div>
               <div class="col-md-4">
                 WhatsApp:
-                  <input type="tel" name="whatsapp" class="form-control" placeholder="ex.: 11999999999">
+                  <input type="tel" name="whatsapp" value="<?php echo $usuario['whatsapp'] ?>" class="form-control" placeholder="ex.: 11999999999">
               </div>
             </div>
             <div class="row">
               <div class="col">
                 Bio:
-                <textarea name="bio" class="form-control" style="min-height: 150px;"></textarea>
+                <textarea name="bio" class="form-control" style="min-height: 150px;"><?php echo $usuario['bio'] ?></textarea>
               </div>
             </div>
             <br>
@@ -141,23 +163,23 @@
           </form>
           <?php 
             if(isset($_POST['envia'])){
-              $usuario = $_POST['usuario'];
-              $senha = md5($_POST['senha']);
-              $email = $_POST['email'];
-              $nome = $_POST['nome'];
-              $role = $_POST['cargo'];
-              $telefone = $_POST['telefone'];
-              $bio = $_POST['bio'];
-              $facebook = $_POST['facebook'];
-              $instagram = $_POST['instagram'];
-              $whatsapp_postvar = $_POST['whatsapp'];
-              $whatsapp = 'https://wa.me/55'.$whatsapp_postvar;
+              $usuario      = $_POST['usuario'];
+              $email        = $_POST['email'];
+              $nome         = $_POST['nome'];
+              $nascimento   = $_POST['nascimento'];
+              $role         = $_POST['cargo'];
+              $telefone     = $_POST['telefone'];
+              $bio          = $_POST['bio'];
+              $facebook     = $_POST['facebook'];
+              $instagram    = $_POST['instagram'];
+              $whatsapp     = $_POST['whatsapp'];
+              
               //É hora do show porra!
 
-              $sql = "INSERT INTO usuarios_admin (usuario, senha, email, nome, role, telefone, bio, facebook, instagram, whatsapp) VALUES ('$usuario', '$senha', '$email', '$nome', '$role', '$telefone', '$bio', '$facebook', '$instagram', '$whatsapp')";
+              $sql = "UPDATE usuarios_admin SET usuario='$usuario', email='$email', nome='$nome', nascimento='$nascimento', role='$role', telefone='$telefone', bio='$bio', facebook='$facebook', instagram='$instagram', whatsapp='$whatsapp' WHERE ID = $id ";
               
               if($conecta->query($sql) === true){
-                echo "Usuário adicionado com sucesso!";
+                echo "Usuário atualizado com sucesso!";
               }else{
                 echo "Erro: " .$sql. "<br>" .$conecta->error;
               }
