@@ -27,7 +27,7 @@
 		</button>
 		  <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: flex-end;">
 		    <ul class="navbar-nav">
-		      <li class="nav-item active">
+		      <li class="nav-item">
 		        <a class="nav-link" href="#">Usuários</a>
 		      </li>
 		      <li class="nav-item">
@@ -54,7 +54,25 @@
 				</div>		      
 		    </ul>
 		  </div>
-	</nav>
+  </nav>
+  <!-- que comecem os jogos -->
+  <div class="container">
+    <br><br>
+    <div class="row">
+      <div class="col-md-4 abc">
+      teste
+        teste
+      </div>
+      <div class="col-md-8 abc">
+        teste
+        teste
+        
+
+      </div>
+    </div>
+  </div>
+  <!-- que comecem os jogos -->
+
     <!-- Javascript é opcional -->
     <script src="https://kit.fontawesome.com/fbc2e0b83e.js"></script>
     <!-- Seguir a ordem JQuery > Popper > Bootstrap -->
