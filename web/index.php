@@ -1,3 +1,4 @@
+<?php require('inc/conexao.php'); ?>
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -28,7 +29,7 @@
 		  <div class="collapse navbar-collapse" id="navbarNav" style="justify-content: flex-end;">
 		    <ul class="navbar-nav">
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Usuários</a>
+		        <a class="nav-link" href="usuarios/">Usuários</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Galeria</a>
@@ -38,6 +39,9 @@
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Estatísticas</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Mensagens</a>
 		      </li>
 		      <div class="dropdown">
 				  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,16 +64,142 @@
   <br>
   <br>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col abc">
-        <div>
-          Usuários
-        </div>
-      </div>
-      <div class="col-md-8 abc">
-        Galeria de Vídeos  
-
-      </div>
+			<!-- usuarios -->
+			<div class="row">
+				<div class="col-md-6 colunaCustom">
+					<div class="header_coluna">
+						<h4>Usuários</h4>
+						<a href="usuarios/novo.php" class="btn btn-success"><i class="fas fa-plus"></i></a>						
+					</div>
+					<hr>
+					<div class="table-responsive">
+						<table class="table table-hover table-sm">
+						  <thead>
+				           <tr>
+				                <th scope="col">#</th>
+				                <th scope="col">Usuário</th>
+				                <th scope="col">Email</th>
+                        <th scope="col">Social</th>
+                        <th scope="col">Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+								$sql = "SELECT * FROM usuarios_admin ORDER BY id DESC limit 10;";
+								$qry = mysqli_query($conecta, $sql);
+								while ($linha = mysqli_fetch_array($qry)) {
+                  ?>							
+							<tr>
+                <td>
+                  <center><?php echo $linha["id"] ?></center>
+								</td>
+								<td>
+                  <?php echo $linha["usuario"] ?>
+                  
+                </td>
+								<td><?php echo $linha["email"] ?></td>
+                <td>
+                  <center>
+                    <a class="customLink" target="_blank" href="<?php echo $linha['facebook'] ?>"><i class="fab fa-facebook"></i></a>
+                    <a class="customLink" target="_blank" target="_blank" href="<?php echo $linha['instagram'] ?>"><i class="fab fa-instagram"></i></a>
+                    <a class="customLink" target="_blank" href="https://wa.me/55<?php echo $linha['whatsapp'] ?>"><i class="fab fa-whatsapp"></i></a>                
+                  </center>
+                </td>
+                <td><center><a href="usuarios/visualiza.php?id=<?php echo $linha["id"] ?>"><i class="far fa-eye"></i></a></center></td>
+							</tr>
+						
+						<?php
+							}									 
+						?>
+					    </tbody>
+					</table>
+				</div>
+					<!-- datatable -->
+				</div>
+				<!-- Mensagens -->
+				<div class="col colunaCustom">
+					<div class="header_coluna">
+						<h4>Mensagens</h4>
+						<a href="#" class="btn btn-success"><i class="fas fa-plus"></i></a>						
+					</div>
+					<hr>
+					<div class="table-responsive">
+						<table class="table table-hover table-sm">
+							<thead>
+								<tr>
+									<th scope="col">De</th>
+									<th scope="col">Assunto</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+                  <td>pedrinho</td>
+                  <td>Atualizações do aplicativo projetadas para Agosto...</td>
+                  <td><a href="#"><i class="far fa-eye"></i></a></td>
+                </tr>
+								<tr>
+                  <td>usuario057</td>
+                  <td>Dúvidas ao acessar a aula de spinning...</td>
+                  <td><a href="#"><i class="far fa-eye"></i></a></td>
+                </tr>
+								<tr>
+                  <td>mariacarolina</td>
+                  <td>Editar este conteúdo para as novas aulas [URGENTE]</td>
+                  <td><a href="#"><i class="far fa-eye"></i></a></td>
+                </tr>
+								<tr>
+                  <td>Administrador</td>
+                  <td>Evento para lançamento do App. Julho/2019</td>
+                  <td><a href="#"><i class="far fa-eye"></i></a></td>
+                </tr>
+							</tbody>
+						</table>
+					</div>
+				</div>				
+			</div>
+      <!-- usuários -->
+      <div class="row">
+      <div class="col colunaCustom">
+					<div class="header_coluna">
+						<h4>Galeria de Vídeos</h4>
+						<a href="#" class="btn btn-success"><i class="fas fa-plus"></i></a>						
+					</div>
+					<hr>
+					<div class="table-responsive">
+						<table class="table table-hover table-sm">
+							<thead>
+								<tr>
+									<th scope="col">De</th>
+									<th scope="col">Assunto</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+                  <td>pedrinho</td>
+                  <td>Atualizações do aplicativo projetadas para Agosto...</td>
+                  <td><a href="#"><i class="far fa-eye"></i></a></td>
+                </tr>
+								<tr>
+                  <td>usuario057</td>
+                  <td>Dúvidas ao acessar a aula de spinning...</td>
+                  <td><a href="#"><i class="far fa-eye"></i></a></td>
+                </tr>
+								<tr>
+                  <td>mariacarolina</td>
+                  <td>Editar este conteúdo para as novas aulas [URGENTE]</td>
+                  <td><a href="#"><i class="far fa-eye"></i></a></td>
+                </tr>
+								<tr>
+                  <td>Administrador</td>
+                  <td>Evento para lançamento do App. Julho/2019</td>
+                  <td><a href="#"><i class="far fa-eye"></i></a></td>
+                </tr>
+							</tbody>
+						</table>
+					</div>
+				</div>			
     </div>
   </div>
   <!-- que comecem os jogos -->
