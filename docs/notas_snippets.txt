@@ -30,3 +30,11 @@ Editor
 Personal Trainer
 Usuário
 
+table development videos
+id
+titulo
+desc
+categoria
+link
+professor
+data_postagem
