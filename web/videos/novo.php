@@ -32,7 +32,7 @@
 		        <a class="nav-link" href="../usuarios/">Usuários</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Galeria</a>
+		        <a class="nav-link" href="../videos/">Galeria</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Gameficação</a>
