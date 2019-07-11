@@ -44,4 +44,9 @@
 .abc{
 	background-color: whitesmoke;
 	margin: 25px;
+	padding: 10px;
+	border-radius: 10px;
+}
+a .customLink{
+	color: #000 !important;
 }

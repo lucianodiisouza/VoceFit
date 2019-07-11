@@ -1,3 +1,4 @@
+<?php require('../inc/conexao.php') ?>
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -7,9 +8,9 @@
     <meta name="description" content="Get started with Bootstrap, the world’s most popular framework for building responsive, mobile-first sites, with BootstrapCDN and a template starter page.">
     <meta name="author" content="Luciano dii Souza - Desenvolvedor Web FullStack & Mobile">
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
     <!-- meu css -->
-    <link rel="stylesheet" href="assets/css/dashboard.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" type="text/css" />
     <!-- CSS do Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>VoceFit</title>
@@ -19,7 +20,7 @@
   <!-- Image and text -->
 	<nav class="navbar navbar-default fixed-top navbar-expand-lg navbar-light bg-light" style="background-color: #C4E322;">
 		<a class="navbar-brand" href="../index.php">
-		    <img src="assets/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+		    <img src="../assets/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
 		    VoceFit
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,21 +58,56 @@
   </nav>
   <!-- fim da barra de navegação -->
   <!-- que comecem os jogos -->
-  <br>
-  <br>
-  <br>
-  <div class="container-fluid">
+  <div class="container-fluid" style="width: 90% !important;">
+      <br>
+      <br>
+      <br>
     <div class="row">
-      <div class="col abc">
-        <div>
-          
+      <div class="col colunaCustom">
+        <div class="header_coluna">
+          <h4>Usuários - Administrativos</h4>
+          <a href="novo.php" class="btn btn-success"><i class="fas fa-plus"></i></a>
         </div>
-      </div>
-      <div class="col-md-8 abc">
-        teste
-        teste
-        
-
+          <hr>
+      <div class="table-responsive">
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th scope="col">Usuário</th>
+              <th scope="col">Email</th>
+              <th scope="col">Nome</th>
+              <th scope="col"><center>Social</center></th>
+              <th scope="col"><center>Ações</center></th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php 
+              $sql = "SELECT * FROM usuarios_admin ORDER BY id;";
+              $qry = mysqli_query($conecta, $sql);
+              while($usuario = mysqli_fetch_array($qry)){
+            ?>
+            <!-- é mágica? acho que não rs -->
+                <tr>
+                  <td><center><?php echo $usuario['id']; ?></center></td>
+                  <td><?php echo $usuario['usuario'] ?></td>
+                  <td><?php echo $usuario['email'] ?></td>
+                  <td><?php echo $usuario['nome'] ?></td>
+                  <td>
+                    <center>
+                      <a class="customLink" target="_blank" href="<?php echo $usuario['facebook'] ?>"><i class="fab fa-facebook"></i></a>
+                      <a class="customLink" target="_blank" target="_blank" href="<?php echo $usuario['instagram'] ?>"><i class="fab fa-instagram"></i></a>
+                      <a class="customLink" target="_blank" href="<?php echo $usuario['whatsapp'] ?>"><i class="fab fa-whatsapp"></i></a>                
+                    </center>
+                  </td>
+                  <td><center><a href="#"><i class="far fa-eye"></i></a></center></td>
+                </tr>
+            <!-- é mágica? acho que não rs -->
+            <?php
+              }
+            ?>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

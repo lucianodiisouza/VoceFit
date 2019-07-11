@@ -1,0 +1,32 @@
+table development usuarios 
+id
+usuario
+nome
+email
+
+
+table development usuarios_admin
+id
+usuario
+senha
+email 
+nome 
+role
+telefone
+bio
+facebook
+instagram
+whatsapp
+
+
+
+table development role 
+id
+role 
+desc
+
+Administrador
+Editor
+Personal Trainer
+Usuário
+
