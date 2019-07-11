@@ -56,17 +56,18 @@
 		  </div>
   </nav>
   <!-- que comecem os jogos -->
-  <div class="container">
-    <br><br>
+  <br>
+  <br>
+  <br>
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-4 abc">
-      teste
-        teste
+      <div class="col abc">
+        <div>
+          Usuários
+        </div>
       </div>
       <div class="col-md-8 abc">
-        teste
-        teste
-        
+        Galeria de Vídeos  
 
       </div>
     </div>
