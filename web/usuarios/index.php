@@ -100,8 +100,7 @@
                       <a class="customLink" target="_blank" href="<?php echo $usuario['whatsapp'] ?>"><i class="fab fa-whatsapp"></i></a>                
                     </center>
                   </td>
-                  <td><center><a href="#"><i class="far fa-eye"></i></a></center></td>
-                </tr>
+                  <td><center><a href="ver.php?id=<?php echo $usuario['id'] ?>"><i class="far fa-eye"></i></a></center></td>
             <!-- é mágica? acho que não rs -->
             <?php
               }
