@@ -8,7 +8,7 @@ require('inc/conexao.php');
 	<meta charset="utf-8">
 	<meta name="author" content="Luciano dii Souza - Web Developer FullStack And MobileDev">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="O VoceFit é uma iniciativa entre amigos para os amantes do Futebol! Entre, cadastre-se e se divirta! Usuários de Android poderão baixar nosso App na PlayStore!">
+	<meta name="description" content="Descrição do Site - Depois preciso adicionar o analitics aqui!">
 
 	<title>Dashboard - VoceFit</title>
 
@@ -74,7 +74,7 @@ require('inc/conexao.php');
                         <center>
                             <button type="submit" value="Entrar" name="entrar" class=" btn btn-primary">Entrar</button>
                             <button type="reset" value="Limpar" name="limpar" class=" btn btn-danger">Limpar</button>
-                            <input type="hidden" value="login" name="login" />
+                            <input type="hidden" value="login" name="login" >
                             <br>
                         </center>
                         </div>
@@ -85,14 +85,14 @@ require('inc/conexao.php');
                         if (isset($_POST['login'])) {
                             $usuario = $_POST['usuario'];
                             $senha = $_POST['senha'];
-                            $sql = "SELECT id, usuario FROM usuarios_admin WHERE usuario = '{$usuario}' AND senha = md5('{$senha}') AND role < 4;";
+                            $sql = "SELECT id, usuario FROM usuarios_admin WHERE usuario = '{$usuario}' AND senha = md5('{$senha}')";
                             $consulta = mysqli_query($conecta, $sql);
                             $linha = mysqli_num_rows($consulta);
                             
                             if($linha == 1){
                                 $_SESSION['usuario'] = $usuario;
                                 $_SESSION['id'] = $id_usarioAtual;
-                                header('Location: index.php');
+                                header("Location: https://vocefittemp.000webhostapp.com/index.php");
                                 exit();
                             }else{
                                 $_SESSION['nao_autenticado'] = true;
