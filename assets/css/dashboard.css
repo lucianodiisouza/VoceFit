@@ -1,11 +1,7 @@
-.linhaCustom {	
-	background: rgba(0, 0, 0, 0.05);
-	margin: 15px;
-}
 .colunaCustom {	
 	background: rgba(0, 0, 0, 0.05);
 	margin: 15px;
-	padding: 25px;
+	padding: 15px;
 }
 .bloco_link{
 	color: #000;
@@ -31,11 +27,12 @@
 	justify-content: flex-end;
 }
 .block_partida{
-	border-radius: 10px;
+	border-radius: 5px;
 	background-color: #dedede;
-	margin: 20px;
+	margin: 25px;
 	padding: 10px;
 	align-content: center;
+	height: 150px;
 }
 .flex-div{
 	display: flex;

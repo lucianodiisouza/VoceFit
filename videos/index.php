@@ -1,4 +1,6 @@
-<?php require('../inc/conexao.php') ?>
+<?php require('../inc/conexao.php');
+      require('../_validar_login_sub.php');
+?>
 <!doctype html>
 <html lang="pt-br">
   <head>

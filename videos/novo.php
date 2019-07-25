@@ -1,4 +1,6 @@
-<?php require('../inc/conexao.php') ?>
+<?php require('../inc/conexao.php');
+      require('../_validar_login_sub.php');
+?>
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -97,9 +99,20 @@
               </div>
             </div>
             <div class="row">
-              <div class="col">
+            <div class="col">
                 Professor:
-                <input type="text" name="professor" class="form-control">
+                <select name="instrutor" class="form-control">
+                  <option value="" hidden selected disabled>Selecione...</option>
+                  <?php 
+                    $sql = "SELECT * FROM usuarios_admin WHERE role = 3";
+                    $qry = mysqli_query($conecta, $sql);
+                    while ($personal = mysqli_fetch_array($qry)){
+                  ?>
+                    <option value="<?php echo $personal['nome'] ?>"><?php echo $personal['nome'] ?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
               </div>
               <div class="col">
                 Data:

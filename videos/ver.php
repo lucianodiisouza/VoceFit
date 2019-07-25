@@ -1,4 +1,6 @@
-<?php require('../inc/conexao.php') ?>
+<?php require('../inc/conexao.php');
+      require('../_validar_login_sub.php');
+?>
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -69,7 +71,7 @@
             $id = $_GET['id'];
             $sql = "SELECT * FROM videos WHERE id = $id";
             $qry = mysqli_query($conecta, $sql);
-            $video = mysqli_fetch_assoc($qry);               
+            $video = mysqli_fetch_assoc($qry);
           ?>
           <div class="row">
               <div class="col">
@@ -121,17 +123,28 @@
             <div class="row">
               <div class="col">
                 Professor:
-                <input type="text" name="professor" value="<?php echo $video['professor'] ?>" class="form-control">
+                <select name="instrutor" class="form-control">
+                  <option value="<?php echo $video['professor'] ?>" hidden selected disabled><?php echo $video['professor'] ?></option>
+                  <?php 
+                    $sql = "SELECT * FROM usuarios_admin WHERE role = 3";
+                    $qry = mysqli_query($conecta, $sql);
+                    while ($personal = mysqli_fetch_array($qry)){
+                  ?>
+                    <option value="<?php echo $personal['nome'] ?>"><?php echo $personal['nome'] ?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
               </div>
               <div class="col">
                 Data:
-                <input type="date" value="<?php echo $video['data'] ?>" name="data" class="form-control">
+                <?php $data = date( 'd/m/Y', strtotime($video["criado_em"])); ?>
+                <input type="text" value="<?php echo $data ?>" name="data" class="form-control" readonly>
               </div>
               <div class="col">
                 Disponível?
                 <select name="disponível" class="form-control" >
-                  <option value="" disabled hidden selected>Selecione uma opção ...</option>
-                  <option value="Sim">Sim</option>
+                  <option value="Sim" selected>Sim</option>
                   <option value="Não">Não</option>
                 </select>
               </div>
@@ -143,13 +156,13 @@
               </div>
             </div>
             <br>
-            <div class="row">
+            <!-- <div class="row">
               <div class="col">
                 <center>
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/-0cY8PBRYZM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe src="<?php echo $video['link'] ?>" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                 </center>
               </div>
-            </div>
+            </div> -->
             <br>
           </form>
           <?php 
@@ -157,11 +170,11 @@
               $titulo = $_POST['titulo'];
               $categoria = $_POST['categoria'];
               $link = $_POST['linkVideo'];
-              $professor = $_POST['professor'];
+              $professor = $_POST['instrutor'];
               $desc = $_POST['desc'];
               //É hora do show porra!
 
-              $sql = "UPDATE videos SET titulo='$titulo', categoria='$categoria', link='$link', professor='$professor', descricao='$descricao';";
+              $sql = "UPDATE videos SET titulo='$titulo', categoria='$categoria', link='$link', professor='$professor', descricao='$desc' WHERE id = $id";
               
               if($conecta->query($sql) === true){
                 echo "Vídeo atualizado com sucesso!";
