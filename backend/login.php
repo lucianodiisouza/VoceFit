@@ -92,7 +92,7 @@ require('inc/conexao.php');
                             if($linha == 1){
                                 $_SESSION['usuario'] = $usuario;
                                 $_SESSION['id'] = $id_usarioAtual;
-                                header("Location: https://vocefittemp.000webhostapp.com/index.php");
+                                header("Location: index.php");
                                 exit();
                             }else{
                                 $_SESSION['nao_autenticado'] = true;
