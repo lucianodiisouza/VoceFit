@@ -1,0 +1,22 @@
+usuarios
+cadastro de usuarios 
+    nome
+    email
+    celular
+    senha (ver senha)
+    idade
+    sexo
+    estado
+Login 
+    email
+    senha
+Video
+    Listar Videos
+    Exibir Vídeo
+quiz objetivo (opcional)
+    perder peso
+    ganhar massa muscular
+    melhorar desempenho físico
+
+menu no footer
+
